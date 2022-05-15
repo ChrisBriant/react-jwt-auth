@@ -1,38 +1,137 @@
-.App {
+:root {
+  --primary-color:#c72727;
+  --secondary-color: #f99500;
+  --light-color: #f3f3f3;
+  --dark-color: #333;
+  --btn-primary: #259934;
+  --btn-primary-hov: #1eac31;
+  --error-color: #c72727;
+  --form-error-bg: #d49d9d;
+  --max-width: 1100px;
+}
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* general styles  */
+
+body, html {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 18px;
+}
+
+input {
+  border-radius: 6px;
+  outline-color: aquamarine;
+  border: 1px solid #222;
+  padding: 4px;
+  margin: 0 4px;
+}
+
+.centerText {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/* #root {
+  
+} */
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.content {
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 2px 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn.btn-primary {
+  color: #fff;
+  background-color: var(--btn-primary);
+  transition: all 1s;
 }
+
+.btn.btn-primary:hover {
+  color: #efefef;
+  background-color: var(--btn-primary-hov);
+}
+
+/* Navigation  */
+
+nav {
+  background-color: var(--dark-color);
+}
+
+nav .navBar{
+  display: flex;
+  justify-content: space-between;
+  padding: .75rem 2rem;
+}
+
+nav .navBar ul li {
+  list-style-type: none;
+  display: inline-block;
+}
+
+nav .navBar ul li a{
+  color: var(--light-color);
+}
+
+nav .navBar ul li a:hover {
+  color: var(--hover-color)
+}
+
+
+/* forms  */
+
+.content .userForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 6px 0;
+}
+
+ /* sign in  */
+ #signInForm {
+   border: solid 1px #000;
+   border-radius: 10px;
+   padding: 1rem;
+   margin: auto;
+   max-height: 80vh;
+   /* width: 36vw; */
+   min-width: 30vw;
+ }
+
+ /* errors  */
+
+ .formErrors {
+   padding: 10px;
+   max-width: 20vw;
+ }
+
+ .formErrors ul {
+  list-style-type: square;
+ }
+
+ .formErrors ul li{
+  color: var(--error-color);
+ }
+
+ .formErrorInput {
+   outline-color: var(--error-color);
+   background-color: var(--form-error-bg);
+ }
