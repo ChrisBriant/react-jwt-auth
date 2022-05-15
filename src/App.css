@@ -70,6 +70,7 @@ input {
 
 nav {
   background-color: var(--dark-color);
+  height: 12vh;
 }
 
 nav .navBar{
@@ -143,3 +144,11 @@ nav .navBar ul li a:hover {
    outline-color: var(--error-color);
    background-color: var(--form-error-bg);
  }
+
+.footer {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  height: 8vh;
+  text-align: center;
+  padding: 6px 0 0 0;
+}
