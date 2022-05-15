@@ -41,14 +41,12 @@ const SignIn = () => {
 
     const handleSignIn = async (e) => {
         e.preventDefault();
-        console.log('Sign in happens here');
         const payload = {
             email,
             password
         }
         if(validateForm()) {
             const result = await authenticate(payload);
-            console.log('RESULT', result);
             if(result !== 'success') {
                 setFormErrors([result]);
             }
