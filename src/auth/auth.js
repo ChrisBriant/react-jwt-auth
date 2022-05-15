@@ -1,19 +1,6 @@
 import decode from 'jwt-decode';
 import {conn} from '../network/api';
 
-// const tryRefresh = async (refreshToken) => {
-//     //let result = false;
-//     try {
-//         const response = await conn.post('/api/account/refresh/',refreshToken);
-//         console.log('REFRESH TRY',response);
-//         return true;
-//     } catch(err) {
-//         console.log('REFRESH ERROR',err);
-//         return false;
-//     }
-//     console.log('WAITING');
-//     //return result;
-// }
 
 const checkAuthed = () => {
     const accessToken = localStorage.getItem('access_token');
@@ -31,8 +18,6 @@ const checkAuthed = () => {
             const refreshToken = localStorage.getItem('refresh_token');
             if(refreshToken)
             {
-                //tryRefresh().then(console.log('TRIED REFRESH')).catch(console.log('FAILED REFRESH'));
-
                 conn.post('/api/account/refresh/',{ refresh: refreshToken }).then((res) => {
                     console.log('REFRESH RESULT', res);
                     localStorage.setItem('access_token',res.data.access);
@@ -41,7 +26,6 @@ const checkAuthed = () => {
                     console.log('REFRESH ERROR',err);
                     return false;
                 });
-                //console.log('Trid refresh', result);
             } else {
                 return false;
             }
@@ -54,8 +38,6 @@ const checkAuthed = () => {
 
 
 const authenticate = async payload => {
-    //const accessToken = localStorage.getItem('access_token');
-      //const decoded = decode(accessToken);
     console.log(payload);
     let message = '';
     try {
@@ -65,7 +47,6 @@ const authenticate = async payload => {
       localStorage.setItem('refresh_token',response.data.refresh);
       message = 'Success';
     } catch(err) {
-      //console.log(err);
       if(err.response.data.message) {
         message = err.response.data.message;
       } else {
@@ -75,4 +56,10 @@ const authenticate = async payload => {
     return message;
 }
 
-export {checkAuthed, authenticate};
+const signOut = async () => {
+    //Detroy the tokens
+    localStorage.removeItem('refresh_token');
+    localStorage.removeItem('access_token');
+}
+
+export {checkAuthed, authenticate, signOut};
