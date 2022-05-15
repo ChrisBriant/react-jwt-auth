@@ -1,6 +1,13 @@
+import HeaderAuthed from "./HeaderAuthed";
+
 const Home = () => {
     return(
-        <h1>There is no place like home.</h1>
+        <>  
+            <HeaderAuthed />
+            <div className="content">
+                <h1 className="centerText">There is no place like home.</h1>
+            </div>
+        </>
     );
 }
 

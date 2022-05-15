@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {checkAuthed, authenticate} from '../auth/auth';
+import HeaderUnauthed from './HeaderUnauthed';
 
 const SignIn = () => {
     const [email,setEmail] = useState('');
@@ -9,6 +10,12 @@ const SignIn = () => {
     const [passwordErrorClass, setPasswordErrorClass] = useState('');
     const [formErrors, setFormErrors] = useState([]);
     const [isAuthed, setIsAuthed] = useState(false);
+
+    useEffect(() => {
+        if(checkAuthed()) {
+            setIsAuthed(true);
+        };
+    },[]);
 
 
     const validateForm = () => {
@@ -59,6 +66,7 @@ const SignIn = () => {
 
     return(
         <>
+            <HeaderUnauthed />
             {
                 !isAuthed
                 ? <div className="content">
