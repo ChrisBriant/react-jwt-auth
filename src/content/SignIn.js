@@ -3,10 +3,9 @@ import {useState, useEffect} from 'react';
 import {checkAuthed, authenticate} from '../auth/auth';
 import HeaderUnauthed from './HeaderUnauthed';
 
-const SignIn = (props) => {
+const SignIn = () => {
     const navigate = useNavigate();
 
-    console.log(props);
     const [email,setEmail] = useState('');
     const [password,setPass] = useState('');
     const [emailErrorClass, setEmailErrorClass] = useState('');
@@ -50,11 +49,9 @@ const SignIn = (props) => {
         }
         if(validateForm()) {
             const result = await authenticate(payload);
-            console.log(result);
             if(result !== 'Success') {
                 setFormErrors([result]);
             } else {
-                console.log('I want to navigate');
                 navigate('/');
             }
         }
