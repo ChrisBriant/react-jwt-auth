@@ -14,7 +14,7 @@ const Main = () => {
         <div>
             <Routes>
                 <Route path="/" element={<Layout />}>
-                    <Route index element={<ProtectedRoute><Home /></ProtectedRoute>} />
+                    <Route index element={<Home />} />
                     <Route path="/page1" element={<ProtectedRoute><Page1 /></ProtectedRoute>} />
                     <Route path="/signin" element={<SignIn />} />
                     <Route path="/signout" element={<SignOut />} />

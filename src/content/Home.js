@@ -1,5 +1,7 @@
 import HeaderAuthed from "./HeaderAuthed";
 
+console.log('Home Page');
+
 const Home = () => {
     return(
         <>  

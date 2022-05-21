@@ -1,9 +1,12 @@
-import { Navigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom"
 import {useState, useEffect} from 'react';
 import {checkAuthed, authenticate} from '../auth/auth';
 import HeaderUnauthed from './HeaderUnauthed';
 
-const SignIn = () => {
+const SignIn = (props) => {
+    const navigate = useNavigate();
+
+    console.log(props);
     const [email,setEmail] = useState('');
     const [password,setPass] = useState('');
     const [emailErrorClass, setEmailErrorClass] = useState('');
@@ -47,10 +50,13 @@ const SignIn = () => {
         }
         if(validateForm()) {
             const result = await authenticate(payload);
-            if(result !== 'success') {
+            console.log(result);
+            if(result !== 'Success') {
                 setFormErrors([result]);
+            } else {
+                console.log('I want to navigate');
+                navigate('/');
             }
-            setIsAuthed(checkAuthed());
         }
     }
 
@@ -66,8 +72,7 @@ const SignIn = () => {
         <>
             <HeaderUnauthed />
             {
-                !isAuthed
-                ? <div className="content">
+                 <div className="content">
                     <form id="signInForm" className="userForm" onSubmit={handleSignIn} >
                         <h1 className="centerText">Sign In</h1>
                         <div className="formGroup">
@@ -90,7 +95,6 @@ const SignIn = () => {
                         </div>
                     </form>
                 </div>
-                : <Navigate to="/" replace={true} />
             }
         </>
 
